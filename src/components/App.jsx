@@ -1,7 +1,10 @@
+// react-router-dom
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import Dashboard, { dashboardLoader } from "../pages/Dashboard";
 import Erros from "../pages/Errors";
 import MainLayout, { mainLoader } from "./MainLayout";
+import { logoutAction } from "../utils/logoutAction";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +18,10 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         loader: dashboardLoader, // the function that loading the data
         errorElement: <Erros />,
+      },
+      {
+        path: "logout",
+        action: logoutAction,
       },
     ],
   },

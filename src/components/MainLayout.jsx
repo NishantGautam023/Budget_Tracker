@@ -1,4 +1,4 @@
-// React router imorts
+// React router-dom imorts
 import { Outlet, useLoaderData } from "react-router-dom";
 
 // Helper functoins
@@ -22,8 +22,8 @@ const MainLayout = () => {
   return (
     <>
       <div className="layout">
-        {<NavBar userName={userName} />}
-        <h1>{userName}</h1>
+        <NavBar userName={userName} />
+
         <main>
           <Outlet />
         </main>
