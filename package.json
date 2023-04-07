@@ -20,6 +20,7 @@
     "@heroicons/react": "^2.0.17",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "6.8"
+    "react-router-dom": "6.8",
+    "react-toastify": "^9.1.2"
   }
 }
