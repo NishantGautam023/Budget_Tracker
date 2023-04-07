@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Dashboard from "../pages/Dashboard";
+import Dashboard, { dashboardLoader } from "../pages/Dashboard";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Dashboard />,
+    loader: dashboardLoader, // the function that loading the data
   },
   {
     path: "/about",
