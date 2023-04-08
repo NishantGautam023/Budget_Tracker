@@ -1,7 +1,10 @@
 // react-router-dom
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import Dashboard, { dashboardLoader } from "../pages/Dashboard";
+import Dashboard, {
+  dashboardAction,
+  dashboardLoader,
+} from "../pages/Dashboard";
 import Erros from "../pages/Errors";
 import MainLayout, { mainLoader } from "./MainLayout";
 import { logoutAction } from "../utils/logoutAction";
@@ -21,6 +24,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Dashboard />,
         loader: dashboardLoader, // the function that loading the data
+        action: dashboardAction,
         errorElement: <Erros />,
       },
       {
