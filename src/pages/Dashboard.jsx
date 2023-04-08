@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { fetchData } from "../utils/helpers";
+import { createBudget, fetchData } from "../utils/helpers";
 import HomePage from "../components/HomePage";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
@@ -15,14 +15,38 @@ export function dashboardLoader() {
 // Handling Actions when user Submit the Form in the HomePage.
 export async function dashboardAction({ request }) {
   const data = await request.formData();
-  const formData = Object.fromEntries(data);
-  console.log(formData);
-  try {
-    localStorage.setItem("userName", JSON.stringify(formData.userName));
-    return toast.success(`Welcome ${formData.userName}`);
-  } catch (erorr) {
-    throw new Error("Problem in Creating in your Account");
+  const { _action, ...values } = Object.fromEntries(data);
+
+  // new User submission
+  if (_action === "newUser") {
+    try {
+      localStorage.setItem("userName", JSON.stringify(values.userName));
+      return toast.success(`Welcome ${values.userName}`);
+    } catch (erorr) {
+      throw new Error("Problem in Creating in your Account");
+    }
   }
+
+if(_action === "createBudget") {
+  try {
+    // Save a new Budget to my localStorage, in the helper function of helper.js and extract it here
+    
+     try {
+      createBudget({
+        name: values.newBudget,
+        amount: values.newBudgetAmount,
+        
+      })
+     }
+
+
+    return toast.success("Budget Created")
+  } catch (error) {
+    throw new Error("There was a problem creating your budget. ")
+  }
+}
+
+
 }
 
 const Dashboard = () => {
