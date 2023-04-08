@@ -1,7 +1,8 @@
 import { Form } from "react-router-dom";
 import { UserPlusIcon } from "@heroicons/react/24/solid";
 
-import illustration from "../assets/illustration.jpg";
+import budgetImage from "../assets/budgetImage.jpg";
+
 export default function HomePage() {
   return (
     <>
@@ -30,7 +31,7 @@ export default function HomePage() {
             </button>
           </Form>
         </div>
-        <img src={illustration} alt="Person with Money" width={600} />
+        <img src={budgetImage} alt="Person with Money" width={600} />
       </div>
     </>
   );
