@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import { createBudget, fetchData } from "../utils/helpers";
+import { createBudget, fetchData, generateDelay } from "../utils/helpers";
 import HomePage from "../components/HomePage";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
@@ -14,6 +14,8 @@ export function dashboardLoader() {
 
 // Handling Actions when user Submit the Form in the HomePage.
 export async function dashboardAction({ request }) {
+  // randomly wait for certain amount of time
+  await generateDelay();
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
 
@@ -35,7 +37,7 @@ if(_action === "createBudget") {
       createBudget({
         name: values.newBudget,
         amount: values.newBudgetAmount,
-        
+
       })
      }
 

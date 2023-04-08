@@ -36,3 +36,7 @@ export const createBudget = ({ name, amount }) => {
     JSON.stringify([...existingBudget, newItem])
   );
 };
+
+// Generte Delay to the Button when submitting for Budget
+export const generateDelay = () =>
+  new Promise((resolve) => setTimeout(resolve, Math.random() * 1500));
