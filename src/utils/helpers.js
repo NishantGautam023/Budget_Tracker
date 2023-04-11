@@ -21,7 +21,7 @@ export const deleteItem = ({ key }) => {
 
 export const createBudget = ({ name, amount }) => {
   const newItem = {
-    id: crypto.randomUUID,
+    id: crypto.randomUUID(),
     name: name,
     createdAt: Date.now(),
     amount: Number.parseInt(amount, 10),

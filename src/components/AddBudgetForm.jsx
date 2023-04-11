@@ -1,17 +1,22 @@
+// Icon Imports
 import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
+
+// React Imports
 import { useEffect, useRef } from "react";
+
+// React-router-dom Imports
 import { Form, useFetcher } from "react-router-dom";
 
 export default function AddBudgetForm() {
   const fetcher = useFetcher();
-  const fromRef = useRef();
+  const formRef = useRef();
   const focusRef = useRef();
 
   const isSubmitting = fetcher.state === "submitting";
 
   useEffect(() => {
     if (!isSubmitting) {
-      fromRef.current.reset();
+      formRef.current.reset();
       focusRef.current.focus();
     }
   }, [isSubmitting]);
@@ -20,12 +25,12 @@ export default function AddBudgetForm() {
     <>
       <div className="form-wrapper">
         <h2 className="h3">Create Budget</h2>
-        <fetcher.Form method="post" className="grid-sm" ref={fromRef}>
+        <fetcher.Form method="post" className="grid-sm" ref={formRef}>
           <div className="grid-xs">
             <label htmlFor="newBudget">Budget Name</label>
             <input
               type="text"
-              naame="newBudget"
+              name="newBudget"
               id="newBudget"
               placeholder="e.g, Groceries"
               required
