@@ -1,5 +1,10 @@
 import { useLoaderData } from "react-router-dom";
-import { createBudget, fetchData, generateDelay } from "../utils/helpers";
+import {
+  createBudget,
+  createExpense,
+  fetchData,
+  generateDelay,
+} from "../utils/helpers";
 import HomePage from "../components/HomePage";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
@@ -43,9 +48,16 @@ export async function dashboardAction({ request }) {
     }
   }
 
-  if (_action === "createExpense ") {
+  if (_action === "createExpense") {
     // Create an expense
     try {
+      createExpense({
+        name: values.newExpense,
+        amount: values.newExpenseAmount,
+        budgetId: values.newExpenseBudget,
+        //    Each of the select options had an actual options, which had a value which was
+        //  the id of the budget
+      });
       return toast.success(`Expense ${values.newExpense} created`);
     } catch (error) {
       throw new Error("There was a problem creating your Expense. ");

@@ -37,6 +37,26 @@ export const createBudget = ({ name, amount }) => {
   );
 };
 
+//Create Expense
+
+export const createExpense = ({ name, amount, budgetId }) => {
+  const newItem = {
+    id: crypto.randomUUID(),
+    name: name,
+    createdAt: Date.now(),
+    amount: Number.parseInt(amount, 10),
+    budgetId: budgetId,
+  };
+
+  // Give me the Expense if exits or give an empty array []
+  const existingExpenses = fetchData("expenses") ?? [];
+
+  return localStorage.setItem(
+    "expenses",
+    JSON.stringify([...existingExpenses, newItem])
+  );
+};
+
 // Generte Delay to the Button when submitting for Budget
 export const generateDelay = () =>
   new Promise((resolve) => setTimeout(resolve, Math.random() * 1500));

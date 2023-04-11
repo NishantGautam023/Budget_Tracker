@@ -27,10 +27,9 @@ export default function AddExpenseForm({ budgets }) {
           <span className="accent">
             {budgets.length === 1 &&
               budgets.map((budget) => {
-                console.log(budget.name);
-                return <div key={budget.id}> {budget.name} </div>;
+                return <> {budget.name}</>;
               })}
-          </span>
+          </span>{" "}
           Expense
         </h2>
         <fetcher.Form method="post" className="grid-sm" ref={formRef}>
@@ -64,7 +63,7 @@ export default function AddExpenseForm({ budgets }) {
 
           {/* if one budget should not display and if more then one budget should display */}
 
-          <div className="grid-xs">
+          <div className="grid-xs" hidden={budgets.length === 1}>
             <label htmlFor="newExpenseBudget">Budget Category</label>
             <select name="newExpenseBudget" id="newExpenseBudget" required>
               {/* Sorting the Budget by when they are created and looping them through down 
@@ -83,19 +82,14 @@ export default function AddExpenseForm({ budgets }) {
 
           {/* When the form is submitted like AddBudgetForm        */}
 
-          <input
-            type="hidden"
-            name="_action
-        "
-            value="createdExpense"
-          />
+          <input type="hidden" name="_action" value="createExpense" />
           <button
             type="submit"
             className="btn btn--dark"
             disabled={isSubmitting}
           >
             {isSubmitting ? (
-              <span>Creating budget ...</span>
+              <span>Submitting ...</span>
             ) : (
               <>
                 <span>Add Expense</span>
