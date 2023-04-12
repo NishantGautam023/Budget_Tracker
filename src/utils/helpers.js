@@ -60,3 +60,13 @@ export const createExpense = ({ name, amount, budgetId }) => {
 // Generte Delay to the Button when submitting for Budget
 export const generateDelay = () =>
   new Promise((resolve) => setTimeout(resolve, Math.random() * 1500));
+
+// Formatting the Existing Budgets
+
+// 1) Format currency
+export const formatCurrency = (amount) => {
+  return amount.toLocaleString(undefined, {
+    style: "currency",
+    currency: "CAD",
+  });
+};

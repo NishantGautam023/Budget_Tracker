@@ -22,6 +22,7 @@ export default function NavBar({ userName }) {
           <img src={logomark} alt="" height={30} />
           <span>BudgetTracker</span>
         </NavLink>
+
         {userName && (
           <Form method="post" action="logout" onSubmit={handleFormSubmit}>
             <button type="submit" className="btn btn--warning">
