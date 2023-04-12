@@ -61,6 +61,23 @@ export const createExpense = ({ name, amount, budgetId }) => {
 export const generateDelay = () =>
   new Promise((resolve) => setTimeout(resolve, Math.random() * 1500));
 
+// Sepending the Budget
+//  1) Total spent By Budget - Pass the BudetID, and grab all the expense using FetchData and loop
+// through the expense and get the total value
+export const calculateBudgetSpent = (budgetId) => {
+  const expense = fetchData("expenses") ?? [];
+  // Loop through the Budget and add check the bugetID matches we adding
+  const budgetSpend = expense.reduce((current, target) => {
+    // Check if the target i.e expense.id === budgetId
+    if (target.budgetId !== budgetId) {
+      return current;
+    }
+    // Add the current Amount to Total;
+    return (current = current + target.amount);
+  }, 0);
+  return budgetSpend;
+};
+
 // Formatting the Existing Budgets
 
 // 1) Format currency
@@ -68,5 +85,14 @@ export const formatCurrency = (amount) => {
   return amount.toLocaleString(undefined, {
     style: "currency",
     currency: "CAD",
+  });
+};
+
+//2. Formatting Percentages
+export const formatPercentage = (amount) => {
+  // undefined means it will use the user visting the site locale
+  return amount.toLocaleString(undefined, {
+    style: "percent",
+    minimumFractionsDigits: 0,
   });
 };
