@@ -9,7 +9,7 @@ export default function BudgetItem({ budget }) {
   const spentMoney = calculateBudgetSpent(id);
   return (
     <>
-      <div className="budget">
+      <div className="budget" style={{ "--accent": color }}>
         <div className="progess-text">
           <h3>{name}</h3>
           <p>{formatCurrency(amount)} Budgeted</p>
