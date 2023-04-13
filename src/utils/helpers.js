@@ -59,7 +59,7 @@ export const createExpense = ({ name, amount, budgetId }) => {
 
 // Generte Delay to the Button when submitting for Budget
 export const generateDelay = () =>
-  new Promise((resolve) => setTimeout(resolve, Math.random() * 1500));
+  new Promise((resolve) => setTimeout(resolve, Math.random() * 400));
 
 // Sepending the Budget
 //  1) Total spent By Budget - Pass the BudetID, and grab all the expense using FetchData and loop
