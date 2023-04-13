@@ -96,3 +96,7 @@ export const formatPercentage = (amount) => {
     minimumFractionsDigits: 0,
   });
 };
+
+//3. Formatting to Epoch Number
+export const formatDateToLocaleString = (epoch) =>
+  new Date(epoch).toLocaleDateString();

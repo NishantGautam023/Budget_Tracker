@@ -10,13 +10,15 @@ import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
 import AddExpenseForm from "../components/AddExpenseForm";
 import BudgetItem from "../components/BudgetItem";
+import Table from "../components/Tables";
 
 // Loader function
 export function dashboardLoader() {
   // Look in the LocalStorage for a key called userName
   const userName = fetchData("userName"); // This userName is the key pased in the helper function of Dashboard.jsx
   const budgets = fetchData("budgets");
-  return { userName, budgets }; // return the data we getting, return the object as userName as one of the Object.
+  const expenses = fetchData("expenses");
+  return { userName, budgets, expenses }; // return the data we getting, return the object as userName as one of the Object.
 }
 
 // Handling Actions when user Submit the Form in the HomePage.
@@ -67,7 +69,7 @@ export async function dashboardAction({ request }) {
 }
 
 const Dashboard = () => {
-  const { userName, budgets } = useLoaderData();
+  const { userName, budgets, expenses } = useLoaderData();
 
   return (
     <>
@@ -89,6 +91,17 @@ const Dashboard = () => {
                     <BudgetItem key={budget.id} budget={budget} />
                   ))}
                 </div>
+                {/* Loop through Each expense any and more than one  */}
+                {expenses && expenses.length > 0 && (
+                  <div className="grid-md">
+                    <h2>My Recent Expenses</h2>
+                    <Table
+                      expenses={expenses.sort(
+                        (a, b) => b.createdAt - a.createdAt
+                      )}
+                    />
+                  </div>
+                )}
               </div>
             ) : (
               <div className="grid-sm">
