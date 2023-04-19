@@ -18,6 +18,7 @@ import ExpensesPage, {
 // Library Imports
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BudgetPage, { budgetAction, budgetLoader } from "../pages/BudgetPage";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,16 @@ const router = createBrowserRouter([
         element: <ExpensesPage />, // page to show when the route gets hit
         loader: expensesLoader, // loader to show
         action: expensesAction,
+        errorElement: <Erros />,
       },
+      {
+        path: "budget/:id", // act as a route /budget, : acting dynamic
+        element: <BudgetPage />, // page to show when the route gets hit
+        loader: budgetLoader, // loader to show
+        action: budgetAction,
+        errorElement: <Erros />,
+      },
+
       {
         path: "logout",
         action: logoutAction,

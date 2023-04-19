@@ -7,7 +7,7 @@ import {
 } from "../utils/helpers";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
-export default function ExpenseItem({ expense }) {
+export default function ExpenseItem({ expense, showBudget }) {
   const fetcher = useFetcher();
   // Helper function to get the Budget
   const budget = getAllMatchingItems({
@@ -20,13 +20,17 @@ export default function ExpenseItem({ expense }) {
       <td>{expense.name}</td>
       <td>{formatCurrency(expense.amount)}</td>
       <td>{formatDateToLocaleString(expense.createdAt)}</td>
-      <td>
-        <Link style={{ "--accent": budget.color }} to={`/budget/${budget.id}`}>
-          {budget.name}
-        </Link>
-      </td>
-      {/* One more Form of table data to submit data, fetcher.form, delay while
-      accessing the database */}
+
+      {showBudget && (
+        <td>
+          <Link
+            style={{ "--accent": budget.color }}
+            to={`/budget/${budget.id}`}
+          >
+            {budget.name}
+          </Link>
+        </td>
+      )}
       <td>
         {/* // Submit the form on that page and handle the action on that page.  */}
         <fetcher.Form method="post">
