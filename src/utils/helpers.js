@@ -17,6 +17,13 @@ export const deleteItem = ({ key }) => {
   return localStorage.removeItem(key);
 };
 
+// Get all items from LocalStorage
+export const getAllMatchingItems = ({ category, key, value }) => {
+  // fetch the data
+  const data = fetchData(category) ?? [];
+  return data.filter((item) => item[key] === value);
+};
+
 //Create Budget
 
 export const createBudget = ({ name, amount }) => {
