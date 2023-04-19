@@ -2,6 +2,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import {
   createBudget,
   createExpense,
+  deleteItem,
   fetchData,
   generateDelay,
 } from "../utils/helpers";
@@ -64,6 +65,20 @@ export async function dashboardAction({ request }) {
       return toast.success(`Expense ${values.newExpense} created`);
     } catch (error) {
       throw new Error("There was a problem creating your Expense. ");
+    }
+  }
+
+  //Delete Expense when clicking the TrashIcon <input type="hidden" name="_action" value="deleteExpense" //
+  // helpers file
+  if (_action === "deleteExpense") {
+    try {
+      deleteItem({
+        key: "expenses",
+        id: values.expenseId,
+      });
+      return toast.success("Expense deleted");
+    } catch (error) {
+      throw new Error("There was a problem deleting your Expense. ");
     }
   }
 }

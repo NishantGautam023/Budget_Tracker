@@ -28,6 +28,7 @@ export default function ExpenseItem({ expense }) {
       {/* One more Form of table data to submit data, fetcher.form, delay while
       accessing the database */}
       <td>
+        {/* // Submit the form on that page and handle the action on that page.  */}
         <fetcher.Form method="post">
           <input type="hidden" name="_action" value="deleteExpense" />
           <input type="hidden" name="expenseId" value={expense.id} />

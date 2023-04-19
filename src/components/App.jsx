@@ -10,7 +10,10 @@ import MainLayout, { mainLoader } from "./MainLayout";
 import { logoutAction } from "../utils/logoutAction";
 
 // Combination of Named and Default Export.
-import ExpensesPage, { expensesLoader } from "../pages/ExpensesPage";
+import ExpensesPage, {
+  expensesAction,
+  expensesLoader,
+} from "../pages/ExpensesPage";
 
 // Library Imports
 import { ToastContainer } from "react-toastify";
@@ -34,6 +37,7 @@ const router = createBrowserRouter([
         path: "expenses", // act as a route #expense
         element: <ExpensesPage />, // page to show when the route gets hit
         loader: expensesLoader, // loader to show
+        action: expensesAction,
       },
       {
         path: "logout",
