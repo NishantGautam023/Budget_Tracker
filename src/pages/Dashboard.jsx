@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import {
   createBudget,
   createExpense,
@@ -96,10 +96,17 @@ const Dashboard = () => {
                   <div className="grid-md">
                     <h2>My Recent Expenses</h2>
                     <Table
-                      expenses={expenses.sort(
-                        (a, b) => b.createdAt - a.createdAt
-                      )}
+                      expenses={expenses
+                        .sort((a, b) => b.createdAt - a.createdAt)
+
+                        // Only show the top 8 Expenses
+                        .slice(0, 8)}
                     />
+                    {expenses.length > 8 && (
+                      <Link href="" to="expenses" className="btn btn--dark">
+                        View all expenses
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>

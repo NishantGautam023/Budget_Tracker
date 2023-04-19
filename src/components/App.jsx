@@ -9,6 +9,9 @@ import Erros from "../pages/Errors";
 import MainLayout, { mainLoader } from "./MainLayout";
 import { logoutAction } from "../utils/logoutAction";
 
+// Combination of Named and Default Export.
+import ExpensesPage, { expensesLoader } from "../pages/ExpensesPage";
+
 // Library Imports
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,9 +26,14 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Dashboard />,
-        loader: dashboardLoader, // the function that loading the data
+        loader: dashboardLoader,
         action: dashboardAction,
         errorElement: <Erros />,
+      },
+      {
+        path: "expenses", // act as a route #expense
+        element: <ExpensesPage />, // page to show when the route gets hit
+        loader: expensesLoader, // loader to show
       },
       {
         path: "logout",
