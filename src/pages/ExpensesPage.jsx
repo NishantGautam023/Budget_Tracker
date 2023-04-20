@@ -2,7 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import { deleteItem, fetchData } from "../utils/helpers";
 import Table from "../components/Tables";
 import { toast } from "react-toastify";
-
+import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // loader
 export async function expensesLoader({ request }) {
   const expenses = await fetchData("expenses");
@@ -30,10 +31,16 @@ export async function expensesAction({ request }) {
 
 const ExpensesPage = () => {
   const { expenses } = useLoaderData();
+  const navigate = useNavigate();
+
+  function handleRedirect() {
+    return navigate("/");
+  }
+
   return (
     <>
       <div className="grid-lg">
-        <h1>ExpensesPage</h1>
+        <h1>My recent Expenses</h1>
 
         {expenses && expenses.length > 0 ? (
           <div className="grid-md">
@@ -43,7 +50,13 @@ const ExpensesPage = () => {
             <Table expenses={expenses} />
           </div>
         ) : (
-          <p>No Expenses to show!!!</p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={handleRedirect}
+          >
+            No Expenses Yet! Please Add Expenses by logging in!
+          </button>
         )}
       </div>
     </>
